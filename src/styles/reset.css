@@ -1,0 +1,16 @@
+* {
+    font-family: 'Pretendard', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+
+a {
+    font-size: 12px;
+    font-weight: 400;
+    color: #575757;
+    text-decoration: none;
+}

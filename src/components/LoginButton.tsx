@@ -10,7 +10,7 @@ export default styled.button`
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
-    margin: 16px;
+    margin-top: 12px;
     
     &:hover {
         background-color: #444;

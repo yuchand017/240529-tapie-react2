@@ -4,6 +4,7 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 import LoginButton from "../components/LoginButton.tsx"
 import '../styles/reset.css'
+import {useCredential} from "../store"
 
 const HomeContainer = styled.div`
     display: flex;
@@ -13,10 +14,19 @@ const HomeContainer = styled.div`
     height: 100vh;
     box-sizing: border-box;
     padding: 16px;
+    gap: 13px;
 `
 
 function Home() {
     let navigate = useNavigate();
+    const token = useCredential(state => state.token)
+
+    if (token !== null) {
+        return (<>
+            </>
+        )
+    }
+
     return (
         <HomeContainer>
             <LoginButton onClick={() => navigate("/login")}>로그인</LoginButton>

@@ -3,8 +3,9 @@ import './styles/reset.css'
 
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import Home from "./pages/Home"
-import Login from "./pages/Login.tsx"
-import Register from "./pages/Register.tsx"
+import Login from "./pages/Login"
+import Register from "./pages/Register"
+import Article from "./pages/Article"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/article/:id" element={<Article />} />
       </Routes>
     </BrowserRouter>
   )

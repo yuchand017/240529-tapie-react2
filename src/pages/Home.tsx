@@ -17,12 +17,57 @@ const HomeContainer = styled.div`
     gap: 13px;
 `
 
+const MainHeader = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    margin: 0;
+    
+    p {
+        font-size: 14px;
+        font-weight: 500;
+        color: #686868;
+        cursor: pointer;
+    }
+`
+
+const Article = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    
+    &:hover {
+        background-color: #EBEBEB;
+    }
+    
+    p {
+        color: #686868;
+    }
+`
+
+
 function Home() {
     const navigate = useNavigate();
     const token = useCredential(state => state.token)
+    const setToken = useCredential(state => state.setToken)
 
     if (token !== null) {
         return (<>
+                <MainHeader>
+                    <h4>ㅁㄴㅇㄹ</h4>
+                    <p onClick={
+                        () => {
+                            setToken(null)
+                            alert("로그아웃되었습니다.")
+                            navigate("/")
+                        }
+                    }>로그아웃</p>
+                </MainHeader>
+                <Article>
+                    <h4>안녕하세요</h4>
+                    <p>로그인 되었습니다.</p>
+                </Article>
             </>
         )
     }

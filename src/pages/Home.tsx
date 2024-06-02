@@ -18,7 +18,7 @@ const HomeContainer = styled.div`
 `
 
 function Home() {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
     const token = useCredential(state => state.token)
 
     if (token !== null) {

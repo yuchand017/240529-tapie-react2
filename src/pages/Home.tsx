@@ -1,8 +1,10 @@
+import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 import LoginButton from "../components/LoginButton.tsx"
+import Header from "../components/Header.tsx"
 import '../styles/reset.css'
 import {useCredential} from "../store"
 
@@ -15,21 +17,6 @@ const HomeContainer = styled.div`
     box-sizing: border-box;
     padding: 16px;
     gap: 13px;
-`
-
-const MainHeader = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 16px;
-    margin: 0;
-    
-    p {
-        font-size: 14px;
-        font-weight: 500;
-        color: #686868;
-        cursor: pointer;
-    }
 `
 
 const Article = styled.div`
@@ -50,24 +37,38 @@ const Article = styled.div`
 function Home() {
     const navigate = useNavigate();
     const token = useCredential(state => state.token)
-    const setToken = useCredential(state => state.setToken)
+
+    const [articleData, setArticleData] = useState<{
+        id: number,
+        title: string,
+        writerUsername: string,
+    }[]>([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(
+                'https://board.etty.dev/board/ㅁㄴㅇㄹ/posts',
+                {
+                    headers: {'Authorization': 'Bearer ' + token}
+                }
+            )
+            const responseData = await response.json();
+            setArticleData(responseData.data);
+        };
+
+        fetchData()
+    }, [])
 
     if (token !== null) {
         return (<>
-                <MainHeader>
-                    <h4>ㅁㄴㅇㄹ</h4>
-                    <p onClick={
-                        () => {
-                            setToken(null)
-                            alert("로그아웃되었습니다.")
-                            navigate("/")
-                        }
-                    }>로그아웃</p>
-                </MainHeader>
-                <Article>
-                    <h4>안녕하세요</h4>
-                    <p>로그인 되었습니다.</p>
-                </Article>
+                <Header />
+                <div id="article">
+                    {articleData.map((item) => (
+                        <Article key={item.id}>
+                            <h4>{item.title}</h4>
+                            <p>{item.writerUsername}</p>
+                        </Article>
+                    ))}
+                </div>
             </>
         )
     }

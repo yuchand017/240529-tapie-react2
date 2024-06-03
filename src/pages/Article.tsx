@@ -56,6 +56,10 @@ function Article() {
 
         fetchData()
     }, [])
+    if (!articleData) {
+        alert("게시글을 불러올 수 없습니다")
+        return
+    }
     if (token !== null) {
         return (
             <>

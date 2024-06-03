@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
-import LoginButton from "../components/LoginButton.tsx"
+import LoginButton from "../components/LoginButton"
+import WriteButton from "../components/WriteButton"
 import Header from "../components/Header.tsx"
 import '../styles/reset.css'
 import {useCredential} from "../store"
@@ -62,6 +63,7 @@ function Home() {
     if (token !== null) {
         return (<>
                 <Header />
+                <WriteButton />
                 <div id="article">
                     {articleData.map((item) => (
                         <Article key={item.id} onClick={() => navigate('/article/' + item.id)}>

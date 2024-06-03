@@ -50,24 +50,23 @@ function Article() {
                     headers: {'Authorization': 'Bearer ' + token}
                 }
             )
-            const responseData = await response.json();
-            setArticleData(responseData.data);
+            const responseData = await response.json()
+            if (!response.ok) {
+                alert(responseData.message)
+            }
+            setArticleData(responseData.data)
         };
 
         fetchData()
     }, [])
-    if (!articleData) {
-        alert("게시글을 불러올 수 없습니다")
-        return
-    }
     if (token !== null) {
         return (
             <>
                 <Header />
                 <ArticleView>
-                    <h3>{articleData.title}</h3>
-                    <span>{articleData.writerUsername}</span>
-                    <p>{articleData.content}</p>
+                    <h3>{articleData?.title}</h3>
+                    <span>{articleData?.writerUsername}</span>
+                    <p>{articleData?.content}</p>
                 </ArticleView>
             </>
         )

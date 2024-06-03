@@ -23,6 +23,7 @@ const Article = styled.div`
     display: flex;
     flex-direction: column;
     padding: 16px;
+    cursor: pointer;
     
     &:hover {
         background-color: #EBEBEB;
@@ -63,7 +64,7 @@ function Home() {
                 <Header />
                 <div id="article">
                     {articleData.map((item) => (
-                        <Article key={item.id}>
+                        <Article key={item.id} onClick={() => navigate('/article/' + item.id)}>
                             <h4>{item.title}</h4>
                             <p>{item.writerUsername}</p>
                         </Article>

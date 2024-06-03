@@ -15,6 +15,10 @@ const HeaderContainer = styled.div`
         color: #686868;
         cursor: pointer;
     }
+    
+    h4 {
+        cursor: pointer;
+    }
 `
 
 function Header() {
@@ -23,7 +27,7 @@ function Header() {
 
     return (
         <HeaderContainer>
-            <h4>ㅁㄴㅇㄹ</h4>
+            <h4 onClick={() => navigate('/')}>ㅁㄴㅇㄹ</h4>
             <p onClick={
                 () => {
                     setToken(null)
